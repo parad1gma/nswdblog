@@ -7,7 +7,7 @@ namespace nswdblog.automation
         public void Go()
         {
             var driver = new FirefoxDriver();
-            driver.Navigate
+            driver.Navigate().GoToUrl("http://google.com");
         }
     }
 }
