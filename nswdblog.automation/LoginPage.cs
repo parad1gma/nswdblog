@@ -1,4 +1,4 @@
-﻿using System;
+﻿using OpenQA.Selenium;
 
 namespace nswdblog.automation
 {
@@ -33,7 +33,14 @@ namespace nswdblog.automation
 
         public void Login()
         {
-            throw new NotImplementedException();
+            var loginInput = Driver.Instance.FindElement(By.Id("user_login"));
+            loginInput.SendKeys(username);
+
+            var passwordInput = Driver.Instance.FindElement(By.Id("user_pass"));
+            passwordInput.SendKeys(password);
+
+            var loginButton = Driver.Instance.FindElement(By.Id("wp-submit"));
+            loginButton.Click();
         }
     }
 }

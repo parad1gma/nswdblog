@@ -18,7 +18,13 @@ namespace nswdblog.tests
             LoginPage.GoTo();
             LoginPage.LoginAs("mile.kordic@nswebdevelopment.com").WithPassword("Parad1gma").Login();
 
-            Assert.IsTrue(MyProfile.IsAt, "Failed to login.");
+            Assert.IsTrue(MyProfilePage.IsAt, "Failed to login.");
+        }
+
+        [TestCleanup]
+        public void CleanUp()
+        {
+            Driver.Finalize();
         }
     }
 }

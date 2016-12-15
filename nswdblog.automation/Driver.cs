@@ -13,5 +13,10 @@ namespace nswdblog.automation
             Instance = new FirefoxDriver();
             Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
         }
+
+        public static void Finalize()
+        {
+            Instance.Quit();
+        }
     }
 }
