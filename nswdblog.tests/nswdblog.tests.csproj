@@ -53,8 +53,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CreatePostTests.cs" />
     <Compile Include="LoginTests.cs" />
     <Compile Include="MyProfilePage.cs" />
+    <Compile Include="PostPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

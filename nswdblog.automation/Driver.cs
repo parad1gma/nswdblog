@@ -14,7 +14,7 @@ namespace nswdblog.automation
             Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
         }
 
-        public static void Finalize()
+        public static void Close()
         {
             Instance.Quit();
         }
