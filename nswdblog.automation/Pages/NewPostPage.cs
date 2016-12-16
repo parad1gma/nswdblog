@@ -12,7 +12,6 @@ namespace nswdblog.automation
             menuposts.Click();
 
             var wait = new WebDriverWait(Driver.Instance, TimeSpan.FromSeconds(10));
-            //wait.Until(ExpectedConditions.ElementExists(By.ClassName("post-editor")));
             wait.Until(ExpectedConditions.ElementExists(By.ClassName("editor-title")));
         }
 

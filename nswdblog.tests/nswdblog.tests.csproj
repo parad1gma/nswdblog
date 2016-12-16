@@ -53,9 +53,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CreatePostTests.cs" />
-    <Compile Include="LoginTests.cs" />
-    <Compile Include="nswdblogTest.cs" />
+    <Compile Include="Tests\CreatePostTests.cs" />
+    <Compile Include="Tests\LoginTests.cs" />
+    <Compile Include="Root\nswdblogTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
