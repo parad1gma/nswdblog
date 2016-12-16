@@ -1,5 +1,6 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace nswdblog.automation
 {
@@ -7,11 +8,12 @@ namespace nswdblog.automation
     {
         public static void GoTo()
         {
-            var menuposts = Driver.Instance.FindElement(By.Id("menu-posts"));
+            var menuposts = Driver.Instance.FindElement(By.CssSelector("a.masterbar__item.masterbar__item-new > span.masterbar__item-content"));
             menuposts.Click();
 
-            var addNew = Driver.Instance.FindElement(By.Id("Add New"));
-            addNew.Click();
+            var wait = new WebDriverWait(Driver.Instance, TimeSpan.FromSeconds(10));
+            //wait.Until(ExpectedConditions.ElementExists(By.ClassName("post-editor")));
+            wait.Until(ExpectedConditions.ElementExists(By.ClassName("editor-title")));
         }
 
         public static CreatePostCommand CreatePost(string title)
@@ -21,7 +23,20 @@ namespace nswdblog.automation
 
         public static void GoToNewPost()
         {
-            throw new NotImplementedException();
+            Driver.Instance.FindElement(By.ClassName("notice__action")).Click();
+
+            var wait = new WebDriverWait(Driver.Instance, TimeSpan.FromSeconds(10));
+            var winHandle = wait.Until(d =>
+            {
+                var winHandles = Driver.Instance.WindowHandles;
+                if (winHandles.Count > 1)
+                    return winHandles[1];
+                return null;
+            });
+
+            Driver.Instance.Close();
+
+            Driver.Instance.SwitchTo().Window(winHandle);
         }
     }
 
@@ -32,7 +47,17 @@ namespace nswdblog.automation
 
         public void Publish()
         {
-            throw new NotImplementedException();
+            Driver.Instance.FindElements(By.TagName("textarea"))[0].SendKeys(title);
+
+            Driver.Instance.SwitchTo().Frame("tinymce-1_ifr");
+
+            Driver.Instance.SwitchTo().ActiveElement().SendKeys(body);
+
+            Driver.Instance.SwitchTo().DefaultContent();
+
+            var wait = new WebDriverWait(Driver.Instance, TimeSpan.FromSeconds(10));
+            var publishButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName("editor-ground-control__publish-button")));
+            publishButton.Click();
         }
 
         public CreatePostCommand(string title)

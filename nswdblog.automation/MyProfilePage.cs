@@ -1,7 +1,6 @@
-﻿using nswdblog.automation;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
-namespace nswdblog.tests
+namespace nswdblog.automation
 {
     public class MyProfilePage
     {
