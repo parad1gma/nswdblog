@@ -4,27 +4,12 @@ using nswdblog.automation;
 namespace nswdblog.tests
 {
     [TestClass]
-    public class LoginTests
+    public class LoginTests : nswdblogTest
     {
-        [TestInitialize]
-        public void SrartUp()
-        {
-            Driver.Initialize();
-        }
-
         [TestMethod]
         public void AdminUserCanLogin()
         {
-            LoginPage.GoTo();
-            LoginPage.LoginAs("mile.kordic@nswebdevelopment.com").WithPassword("Parad1gma").Login();
-
             Assert.IsTrue(MyProfilePage.IsAt, "Failed to login.");
-        }
-
-        [TestCleanup]
-        public void CleanUp()
-        {
-            Driver.Close();
         }
     }
 }

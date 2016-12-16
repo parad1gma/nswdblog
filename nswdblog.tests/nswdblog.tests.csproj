@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CreatePostTests.cs" />
     <Compile Include="LoginTests.cs" />
+    <Compile Include="nswdblogTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

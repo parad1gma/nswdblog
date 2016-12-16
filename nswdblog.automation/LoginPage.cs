@@ -8,7 +8,7 @@ namespace nswdblog.automation
     {
         public static void GoTo()
         {
-            Driver.Instance.Navigate().GoToUrl("https://wordpress.com/me");
+            Driver.Instance.Navigate().GoToUrl(Driver.BaseAddress + "me");
         }
 
         public static LoginCommand LoginAs(string username)

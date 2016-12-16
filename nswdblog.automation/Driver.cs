@@ -1,12 +1,17 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using System;
+using System.Threading;
 
 namespace nswdblog.automation
 {
     public class Driver
     {
         public static IWebDriver Instance { get; set; }
+        public static string BaseAddress
+        {
+            get { return "https://wordpress.com/"; }
+        }
 
         public static void Initialize()
         {
@@ -17,6 +22,11 @@ namespace nswdblog.automation
         public static void Close()
         {
             Instance.Quit();
+        }
+
+        internal static void Wait(TimeSpan timeSpan)
+        {
+            Thread.Sleep((int)timeSpan.TotalSeconds * 1000);
         }
     }
 }

@@ -51,6 +51,8 @@ namespace nswdblog.automation
 
             Driver.Instance.SwitchTo().Frame("tinymce-1_ifr");
 
+            Driver.Wait(TimeSpan.FromSeconds(1));
+
             Driver.Instance.SwitchTo().ActiveElement().SendKeys(body);
 
             Driver.Instance.SwitchTo().DefaultContent();
