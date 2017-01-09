@@ -16,7 +16,7 @@ namespace nswdblog.automation
         public static void Initialize()
         {
             Instance = new FirefoxDriver();
-            Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+            TurnOnWait();
         }
 
         public static void Close()
@@ -24,9 +24,38 @@ namespace nswdblog.automation
             Instance.Quit();
         }
 
-        internal static void Wait(TimeSpan timeSpan)
+        public static void Wait(TimeSpan timeSpan)
         {
             Thread.Sleep((int)timeSpan.TotalSeconds * 1000);
+        }
+
+
+        // Driver.NoWait(() => links = row.FindElements(By.LinkText(title)));
+        // ^^^
+        // links = row.FindElements(By.LinkText(title));
+        // 
+        public static void NoWait(Action action)
+        {
+            TurnOffWait();
+            action();
+            TurnOnWait();
+        }
+
+        private static void TurnOnWait()
+        {
+            Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+        }
+
+        private static void TurnOffWait()
+        {
+            Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0));
+        }
+
+        public enum DriverType
+        {
+            Firefox,
+            Chrome,
+            Edge
         }
     }
 }
